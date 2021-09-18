@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import ContactApiView
+from .views import ContactAPIView
 urlpatterns = [
-    path('', ContactApiView.as_view, name='contact'),
+    path('', ContactAPIView.as_view(), name='contact'),
 ]
