@@ -40,3 +40,17 @@ class Home(models.Model):
 
     def __str__(self):
         return self.slug
+
+
+class ImageFiles(models.Model):
+    image = models.ImageField(upload_to='home')
+    home = models.ForeignKey(
+        Home, on_delete=models.CASCADE, related_name='images')
+
+    def save(self, *args, **kwargs):
+        super(ImageFiles, self).save(*args, **kwargs)
+        img = Image.open(self.image.path)
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
