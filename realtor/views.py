@@ -16,3 +16,11 @@ class AgentAPIView(ListAPIView):
 class AgentDetailAPIView(RetrieveAPIView):
     queryset = Agent.objects.all()
     serializer_class = AgentSerializer
+
+
+class TopSellerListView(ListAPIView):
+    print("Top seller")
+    queryset = Agent.objects.filter(top_seller=True)
+    serializer_class = AgentSerializer
+    permission_classes = (permissions.AllowAny,)
+    pagination_class = None
