@@ -19,3 +19,11 @@ class HomeDetailsView(RetrieveAPIView):
     serializer_class = HomeSerializer
     queryset = Home.objects.filter(is_published=True).order_by('-list_date')
     lookup_field = 'slug'
+
+
+class ImageView(APIView):
+    def get(self, request, pk, format=None):
+        home = Home.objects.get(pk=pk)
+        images = home.images.all()
+        serializer = ImageFilesSerializer(images, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
