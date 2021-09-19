@@ -26,7 +26,7 @@ class Home(models.Model):
     zipcode = models.CharField(max_length=150)
     description = models.TextField(blank=True)
     sale_type = models.CharField(
-        max_length=50, choices=SaleType, default=SaleType.FOR_SALE)
+        max_length=50, choices=SaleType.choices, default=SaleType.FOR_SALE)
     home_type = models.CharField(
         max_length=50, choices=HomeType.choices, default=HomeType.HOUSE)
     price = models.IntegerField()
