@@ -13,3 +13,9 @@ class HomeListView(ListAPIView):
     permission_classes = (permissions.AllowAny,)
     queryset = Home.objects.filter(is_published=True).order_by('-list_date')
     lookup_field = 'slug'
+
+
+class HomeDetailsView(RetrieveAPIView):
+    serializer_class = HomeSerializer
+    queryset = Home.objects.filter(is_published=True).order_by('-list_date')
+    lookup_field = 'slug'
